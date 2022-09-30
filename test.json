@@ -32449,37 +32449,5 @@
 				]
 			}
 		},
-		{
-			"listen": "test",
-			"script": {
-				"type": "text/javascript",
-				"exec": [
-					"let name = request.name;",
-					"",
-					"if (!name.has (\"Not in used\") && !name.has (\"not in use\") && !name.has (\"Upload\") && !name.has (\"Upload\") && !name.has (\"not ready\"))  {",
-					"var jsonData = JSON.parse(responseBody);",
-					"//Response Status Validation",
-					"pm.test(\"Response Status = 200\", function(){",
-					"    pm.response.to.have.status(200);",
-					"})",
-					"",
-					"if (pm.response.code === 200){",
-					"// Actions Validation",
-					"var jsonData = pm.response.json();",
-					"if (jsonData.code === true){",
-					"pm.test(\"Successful perform action.\", () =>{",
-					"    pm.expect(jsonData.message).to.eql(\"success\");",
-					"})",
-					"}",
-					"else if (jsonData.code === false){",
-					"pm.test(\"ERROR: Unable to perform action.\", () =>{",
-					"    pm.expect(jsonData.message).to.eql(\"success\");",
-					"})",
-					"}",
-					"}",
-					"}"
-				]
-			}
-		}
 	]
 }
