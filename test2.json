@@ -4,11 +4,5 @@
     "license": "Apache-2.0",
     "require": {
         "yiisoft/yii2": "~2.0.0"
-    },
-    "authors": [
-        {
-            "name": "Arief Wijaya",
-            "email": "hoaaah.arief@gmail.com"
-        }
-    ]
+    }
 }
