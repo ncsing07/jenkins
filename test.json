@@ -32321,24 +32321,6 @@
 				}
 			},
 			"response": []
-		},
-		{
-			"name": "SIMPLEPLAY Betting Report",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"var jsonData = JSON.parse(responseBody);\r",
-							"pm.test(\"Data is available\", () =>{\r",
-							"pm.environment.set(\"simpleplaybetting_id\", jsonData.data.list[0].id);\r",
-							"})\r",
-							"postman.setNextRequest(\"SIMPLEPLAY Betting Details\");"
-						],
-						"type": "text/javascript"
-					}
-				}
-			]
 		}
 	]
 }
