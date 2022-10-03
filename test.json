@@ -32351,44 +32351,7 @@
 					]
 				},
 				"method": "GET",
-				"header": [],
-				"url": {
-					"raw": "{{hostname}}/lottery/simpleplay-bet",
-					"host": [
-						"{{hostname}}"
-					],
-					"path": [
-						"lottery",
-						"simpleplay-bet"
-					],
-					"query": [
-						{
-							"key": "SimplePlayBetDetail[username]",
-							"value": "800000",
-							"disabled": true
-						},
-						{
-							"key": "SimplePlayDetail[begin_time]",
-							"value": "2019/6/1",
-							"disabled": true
-						},
-						{
-							"key": "SimplePlayBetDetail[end_time]",
-							"value": "2021/6/30",
-							"disabled": true
-						},
-						{
-							"key": "SimplePlayBetDetail[operator_id]",
-							"value": "1",
-							"disabled": true
-						},
-						{
-							"key": "page",
-							"value": "1",
-							"disabled": true
-						}
-					]
-				}
+				"header": []
 			},
 			"response": []
 		}
