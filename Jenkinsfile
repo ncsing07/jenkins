@@ -1,28 +1,12 @@
 pipeline {
-    agent any
-
-    stages {
-        stage('clone') {
-            script {
-                def scmvars = checkout(scm)
-                echo "git details: ${scmvars}"
-            }
-        }
-        stage('Test') {
-            steps {
-                echo 'Testing..'
-            }
-        }
-    }
-
-    post {
-        success {
-            githubNotify description: 'This is a shorted example',  status: 'SUCCESS'
-        }
-
-        failure {
-            githubNotify description: 'This is a failure notification',  status: 'FAILURE'
-        }
-    }
+   agent none
+   stages {
+       stage("first") {
+           script {
+               def foo = "foo" 
+               sh "echo ${foo}"
+           }
+       }
+   }
 }
 
