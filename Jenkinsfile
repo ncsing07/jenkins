@@ -6,7 +6,7 @@ pipeline {
             steps {
                 script {
                     checkout scm
-                    stash includes: 'deploy-script.ps1', name: 'deploy-script'
+                    stash includes: 'docker/nginx/Dockerfile', name: 'deploy-script'
                 }
             }
         }
