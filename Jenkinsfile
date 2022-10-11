@@ -1,12 +1,14 @@
 pipeline {
-   agent none
-   stages {
-       stage("first") {
-           script {
-               def foo = "foo" 
-               sh "echo ${foo}"
-           }
-       }
-   }
+    agent none
+    stages {
+        stage("first") {
+            steps {
+                script {
+                    def foo = "foo" 
+                    sh "echo ${foo}"
+                }
+            }
+        }
+    }
 }
 
