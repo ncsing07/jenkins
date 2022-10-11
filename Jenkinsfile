@@ -7,14 +7,15 @@ pipeline {
                 script {
                     def scmvars = checkout(scm)
                     echo "git details: ${scmvars}"
+
+                    def environment  = docker.build 'platforms-base'
+
+                    environment.inside {
+                        stage "Update Dependencies"
+                            sh "composer install || true"
+                    }
                 }
             }
-        }
-    }
-
-    post {
-        success {
-            githubNotify credentialsId: "ncsing07", repo: 'https://github.com/ncsing07/jenkins', account: "${GITHUB_PR_SOURCE_REPO_OWNER}", sha: "${GITHUB_PR_HEAD_SHA}", description: 'This is an example', status: 'SUCCESS'
         }
     }
 }
