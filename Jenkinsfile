@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     stages {
-        stage('Clone and Build') {
+        stage('Clone Api') {
             steps {
                 script {
                     checkout scm
@@ -15,17 +15,19 @@ pipeline {
             }
         }
         
-        stage('Clone') {
-            // Clones the repository from the current branch name
-            echo 'Make the output directory'
-            sh 'mkdir -p build'
+        stage('Clone Test') {
+            steps {
+                // Clones the repository from the current branch name
+                echo 'Make the output directory'
+                sh 'mkdir -p build'
 
-            echo 'Cloning files from (branch: master)'
-            dir('build') {
-                git branch: 'master', credentialsId: 'token2-2', url: 'https://github.com/ncsing07/hello_hapi'
+                echo 'Cloning files from (branch: master)'
+                dir('build') {
+                    git branch: 'master', credentialsId: 'token2-2', url: 'https://github.com/ncsing07/hello_hapi'
+                }
+
+                sh 'ls -a'
             }
-            
-            sh 'ls -a'
         }
     }
 }
