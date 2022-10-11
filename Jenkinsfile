@@ -4,7 +4,7 @@ pipeline {
     stages {
         stage('clone') {
             steps {
-                scmvars = checkout(scm)
+                def scmvars = checkout(scm)
                 echo "git details: ${scmvars}"
             }
         }
