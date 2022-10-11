@@ -7,7 +7,7 @@ pipeline {
                 script {
                     checkout scm
                     sh 'ls -a'
-                    sh 'docker-compose up'
+                    sh 'docker-compose up -d'
                 }
             }
         }
