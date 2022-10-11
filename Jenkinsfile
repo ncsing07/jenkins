@@ -14,11 +14,7 @@ pipeline {
 
     post {
         success {
-            githubNotify description: 'This is a shorted example',  status: 'SUCCESS'
-        }
-
-        failure {
-            githubNotify description: 'This is a failure notification',  status: 'FAILURE'
+            githubNotify credentialsId: "ncsing07", repo: 'https://github.com/ncsing07/jenkins', account: "${GITHUB_PR_SOURCE_REPO_OWNER}", sha: "${GITHUB_PR_HEAD_SHA}", description: 'This is an example', status: 'SUCCESS'
         }
     }
 }
