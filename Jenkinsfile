@@ -1,15 +1,9 @@
 pipeline {
-    def scmvars
-    def image
-    node {    
+    node {
         stage('clone') {
             // enabled by project type "Pipeline script from SCM"
             scmvars = checkout(scm)
             echo "git details: ${scmvars}"
-        }
-        stage('env') {
-            // Jenkins provides no environment variable view
-            sh 'printenv|sort'
         }
 
         post {
