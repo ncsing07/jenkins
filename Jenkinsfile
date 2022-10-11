@@ -5,15 +5,8 @@ pipeline {
         stage('clone') {
             steps {
                 script {
-                    def scmvars = checkout(scm)
-                    echo "git details: ${scmvars}"
-
-                    def environment  = docker.build 'platforms-base'
-
-                    environment.inside {
-                        stage "Update Dependencies"
-                            sh "composer install || true"
-                    }
+                    checkout scm
+                    stash includes: 'deploy-script.ps1', name: 'deploy-script'
                 }
             }
         }
