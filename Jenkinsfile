@@ -7,6 +7,7 @@ pipeline {
                 script {
                     checkout scm
                     sh 'ls -a'
+                    sh 'composer install'
                     sh 'docker-compose up -d'
                     def response = sh(script: 'curl http://localhost:8012/', returnStdout: true)
                     echo '=========================Response===================' + response
