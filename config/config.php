@@ -10,7 +10,7 @@
  */
 
 $params = require(__DIR__ . '/params.php');
-$db = require(__DIR__ . '/db.php');
+// $db = require(__DIR__ . '/db.php');
 
 return [
     'id' => 'micro-app',
@@ -48,7 +48,11 @@ return [
             ],
             'enableCsrfCookie' => false,
         ],
-        'db' => $db,
+        'response' => [
+            'class' => 'yii\web\Response',
+            'format' => \yii\web\Response::FORMAT_JSON,
+        ],
+        // 'db' => $db,
     ],
     'params' => $params,
 ];

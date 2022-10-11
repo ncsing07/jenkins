@@ -1,23 +1,20 @@
-#!/usr/bin/env groovy
-
 pipeline {
-    agent none
+    agent any
+
     stages {
-        stage('PHP') {
-            agent {
-                docker { image 'yiisoftware/yii2-php:7.4-fpm' }
-            }
+        stage('clone') {
             steps {
-                sh 'php -v'
+                script {
+                    def scmvars = checkout(scm)
+                    echo "git details: ${scmvars}"
+                }
             }
         }
-        stage('Redis') {
-            agent {
-                docker { image 'redis:alpine' }
-            }
-            steps {
-                sh 'redis-server --version'
-            }
+    }
+
+    post {
+        success {
+            githubNotify credentialsId: "ncsing07", repo: 'https://github.com/ncsing07/jenkins', account: "${GITHUB_PR_SOURCE_REPO_OWNER}", sha: "${GITHUB_PR_HEAD_SHA}", description: 'This is an example', status: 'SUCCESS'
         }
     }
 }
