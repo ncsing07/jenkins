@@ -26,7 +26,7 @@ pipeline {
                 }
                 
                 echo "===========================workspace directory is ${workspace}"
-                sh 'cd ${workspace}/build'
+                sh 'cd /var/lib/jenkins/workspace/Jenkins/build'
                 sh 'ls -a'
                 sh 'docker build -t pactumjs'
                 sh 'docker images'
