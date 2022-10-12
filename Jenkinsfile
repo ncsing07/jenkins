@@ -36,6 +36,9 @@ pipeline {
                     echo '$WORKSPACE/build'
                     sh 'cd $WORKSPACE/build'
                     sh 'ls -a'
+                    echo "=========================adasdsadsa========================================================"
+                    sh 'cd build'
+                    sh 'ls -a'
                     echo "================================================================================="
                     def response = sh(script: 'curl http://localhost:8012/', returnStdout: true)
                     echo '=========================Response====================' + response
