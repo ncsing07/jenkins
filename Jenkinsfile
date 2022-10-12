@@ -2,19 +2,32 @@ pipeline {
     agent any
 
     stages {
-        stage('clone') {
+        stage('Clone Api') {
             steps {
                 script {
-                    def scmvars = checkout(scm)
-                    echo "git details: ${scmvars}"
+                    checkout scm
+                    sh 'ls -a'
+                    sh 'composer install'
+                    sh 'docker-compose up -d'
+                    def response = sh(script: 'curl http://localhost:8012/', returnStdout: true)
+                    echo '=========================Response===================' + response
                 }
             }
         }
-    }
+        
+        stage('Clone Test') {
+            steps {
+                // Clones the repository from the current branch name
+                echo 'Make the output directory'
+                sh 'mkdir -p build'
 
-    post {
-        success {
-            githubNotify credentialsId: "ncsing07", repo: 'https://github.com/ncsing07/jenkins', account: "${GITHUB_PR_SOURCE_REPO_OWNER}", sha: "${GITHUB_PR_HEAD_SHA}", description: 'This is an example', status: 'SUCCESS'
+                echo 'Cloning files from (branch: master)'
+                dir('build') {
+                    git branch: 'master', credentialsId: 'token2-2', url: 'https://github.com/ncsing07/hello_hapi'
+                }
+
+                sh 'ls -a'
+            }
         }
     }
 }
