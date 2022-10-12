@@ -9,8 +9,6 @@ pipeline {
                     sh 'ls -a'
                     sh 'composer install'
                     sh 'docker-compose up -d'
-                    def response = sh(script: 'curl http://localhost:8012/', returnStdout: true)
-                    echo '=========================Response===================' + response
                 }
             }
         }
@@ -29,6 +27,15 @@ pipeline {
                     sh 'npm install --save-dev mocha'
                     sh 'npm i'
                     sh 'npm run test'
+                }
+            }
+        }
+        
+        stage('Test') {
+            steps {
+                script {
+                    def response = sh(script: 'curl http://localhost:8012/', returnStdout: true)
+                    echo '=========================Response===================' + response
                 }
             }
         }
