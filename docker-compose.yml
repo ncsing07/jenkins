@@ -11,9 +11,19 @@ services:
       - .:/app/
     depends_on:
       - php
+      - mysql
   
   php:
     image: "yiisoftware/yii2-php:7.4-fpm"
     volumes:
       - .:/app/
-  
+
+  mysql:
+    image: mysql:5.7.22
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_DATABASE: test_db
+      MYSQL_ROOT_PASSWORD: my_secret_pw_shh
+      MYSQL_USER: devuser
+      MYSQL_PASSWORD: devpass

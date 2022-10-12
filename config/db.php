@@ -3,8 +3,8 @@
 
 return [
     'class' => 'yii\db\Connection',
-    'dsn' => 'mysql:host=localhost;dbname=yii2-rest-api',
-    'username' => 'root',
-    'password' => '',
+    'dsn' => 'mysql:host=mysql;dbname=test_db;port=3306',
+    'username' => 'devuser',
+    'password' => 'devpass',
     'charset' => 'utf8',
 ];
