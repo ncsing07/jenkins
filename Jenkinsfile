@@ -27,9 +27,9 @@ pipeline {
                     echo "================================================================================="
                     sh 'docker build -t pactumjs -f $WORKSPACE/build/Dockerfile .'
                     sh 'docker images'
+                    sh 'npm i'
+                    sh 'npm run test'
                 }
-//                 sh 'npm i'
-//                 sh 'npm run test'
             }
         }
     }
