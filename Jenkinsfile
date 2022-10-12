@@ -25,7 +25,7 @@ pipeline {
                     git branch: 'master', credentialsId: 'token2-2', url: 'https://github.com/ncsing07/hello_hapi'
                     sh 'ls -a'
                     echo "================================================================================="
-                    sh 'docker build -t pactumjs'
+                    sh 'docker build -t pactumjs -f $WORKSPACE/build/Dockerfile .'
                     sh 'docker images'
                 }
 //                 sh 'npm i'
