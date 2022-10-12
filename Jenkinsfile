@@ -9,6 +9,7 @@ pipeline {
                     sh 'ls -a'
                     sh 'composer install'
                     sh 'docker-compose up -d'
+                    sh 'php yii'
                 }
             }
         }
