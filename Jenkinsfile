@@ -23,6 +23,8 @@ pipeline {
                 sh 'ls -a'
                 dir('$workspace/build') {
                     git branch: 'master', credentialsId: 'token2-2', url: 'https://github.com/ncsing07/hello_hapi'
+                    sh 'ls -a'
+                    echo "================================================================================="
                 }
                 
                 echo "===========================workspace directory is ${workspace}"
