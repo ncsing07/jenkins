@@ -24,8 +24,8 @@ pipeline {
                 dir('$workspace/build') {
                     git branch: 'master', credentialsId: 'token2-2', url: 'https://github.com/ncsing07/hello_hapi'
                     sh 'ls -a'
-                    sh 'docker build -t pactumjs -f $workspace/build/Dockerfile'
-                    sh 'docker run pactumjs'
+                    sh 'docker-compose build'
+                    sh 'docker-compose up -d'
                     sh 'npm i'
                     sh 'npm run test'
                 }
