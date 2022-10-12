@@ -15,7 +15,6 @@ pipeline {
         
         stage('Clone Test') {
             steps {
-                echo "workspace directory is ${WORKSPACE}"
                 // Clones the repository from the current branch name
                 echo 'Cloning files from (branch: master)'
                 dir('$WORKSPACE/build') {
