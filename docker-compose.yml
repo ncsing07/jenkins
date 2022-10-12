@@ -6,7 +6,7 @@ services:
       context: .
       dockerfile: docker/nginx/Dockerfile
     ports:
-      - "8012:80"
+      - "8019:80"
     volumes:
       - .:/app/
     depends_on:
@@ -17,7 +17,7 @@ services:
     image: "yiisoftware/yii2-php:7.4-fpm"
     volumes:
       - .:/app/
-  
+
   mysql:
     image: mysql:5.7.22
     ports:

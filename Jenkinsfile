@@ -2,31 +2,43 @@ pipeline {
     agent any
 
     stages {
-        stage('Clone Api') {
+        stage('Build Api') {
             steps {
                 script {
                     checkout scm
                     sh 'ls -a'
                     sh 'composer install'
                     sh 'docker-compose up -d'
-                    def response = sh(script: 'curl http://localhost:8012/', returnStdout: true)
-                    echo '=========================Response===================' + response
+                    sh 'php yii'
                 }
             }
         }
         
-        stage('Clone Test') {
+        stage('Build Test') {
             steps {
                 // Clones the repository from the current branch name
-                echo 'Make the output directory'
-                sh 'mkdir -p build'
-
                 echo 'Cloning files from (branch: master)'
-                dir('build') {
+                dir('$WORKSPACE/build') {
                     git branch: 'master', credentialsId: 'token2-2', url: 'https://github.com/ncsing07/hello_hapi'
+                    sh 'docker build -t pactumjs -f $WORKSPACE/build/Dockerfile .'
+                    sh 'docker images'
+                    sh 'npm install --save-dev mocha'
+                    sh 'npm i'
                 }
-
-                sh 'ls -a'
+            }
+        }
+        
+        stage('Run Test') {
+            steps {
+                script {
+                    dir('$WORKSPACE/build') {
+                        sh 'ls -a'
+                        echo "================================================================================="
+                        def response = sh(script: 'curl http://localhost:8019/', returnStdout: true)
+                        echo '=========================Response====================' + response
+                        sh 'npm run test'
+                    }
+                }
             }
         }
     }
