@@ -10,7 +10,7 @@
  */
 
 $params = require(__DIR__ . '/params.php');
-// $db = require(__DIR__ . '/db.php');
+$db = require(__DIR__ . '/db.php');
 
 return [
     'id' => 'micro-app',
@@ -52,7 +52,7 @@ return [
             'class' => 'yii\web\Response',
             'format' => \yii\web\Response::FORMAT_JSON,
         ],
-        // 'db' => $db,
+        'db' => $db,
     ],
     'params' => $params,
 ];
