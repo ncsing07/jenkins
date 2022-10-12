@@ -25,7 +25,7 @@ pipeline {
                     git branch: 'master', credentialsId: 'token2-2', url: 'https://github.com/ncsing07/hello_hapi'
                 }
                 
-                sh 'cd $workspace/build'
+                sh 'cd ${workspace}/build'
                 sh 'ls -a'
                 sh 'docker build -t pactumjs'
                 sh 'docker images'
