@@ -17,11 +17,10 @@ pipeline {
         
         stage('Clone Test') {
             steps {
-                echo "workspace directory is ${workspace}"
+                echo "workspace directory is ${WORKSPACE}"
                 // Clones the repository from the current branch name
                 echo 'Cloning files from (branch: master)'
-                sh 'ls -a'
-                dir('$workspace/build') {
+                dir('$WORKSPACE/build') {
                     git branch: 'master', credentialsId: 'token2-2', url: 'https://github.com/ncsing07/hello_hapi'
                     sh 'ls -a'
                     echo "================================================================================="
