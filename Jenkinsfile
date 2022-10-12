@@ -25,7 +25,7 @@ pipeline {
 //                 dir('build') {
 //                     git branch: 'master', credentialsId: 'token2-2', url: 'https://github.com/ncsing07/hello_hapi'
 //                 }
-                sh 'cd ..'
+                sh 'cd /var/www/'
                 sh 'ls -a'
             }
         }
