@@ -27,6 +27,7 @@ pipeline {
                     echo "================================================================================="
                     sh 'docker build -t pactumjs -f $WORKSPACE/build/Dockerfile .'
                     sh 'docker images'
+                    sh 'npm install --save-dev mocha'
                     sh 'npm i'
                     sh 'npm run test'
                 }
