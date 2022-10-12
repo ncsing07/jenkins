@@ -23,12 +23,14 @@ pipeline {
                 sh 'ls -a'
                 dir('$workspace/build') {
                     git branch: 'master', credentialsId: 'token2-2', url: 'https://github.com/ncsing07/hello_hapi'
-                    sh 'ls -a'
-                    sh 'docker-compose build'
-                    sh 'docker-compose up -d'
-                    sh 'npm i'
-                    sh 'npm run test'
                 }
+                
+                sh 'cd $workspace/build'
+                sh 'ls -a'
+                sh 'docker build -t pactumjs'
+                sh 'docker images'
+//                 sh 'npm i'
+//                 sh 'npm run test'
             }
         }
     }
