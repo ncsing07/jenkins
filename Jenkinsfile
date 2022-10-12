@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     stages {
-        stage('Clone Api') {
+        stage('Build Api') {
             steps {
                 script {
                     checkout scm
@@ -13,7 +13,7 @@ pipeline {
             }
         }
         
-        stage('Clone Test') {
+        stage('Build Test') {
             steps {
                 // Clones the repository from the current branch name
                 echo 'Cloning files from (branch: master)'
@@ -27,7 +27,7 @@ pipeline {
             }
         }
         
-        stage('Test') {
+        stage('Run Test') {
             steps {
                 script {
                     dir('$WORKSPACE/build') {
