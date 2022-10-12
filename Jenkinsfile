@@ -33,7 +33,7 @@ pipeline {
                     dir('$WORKSPACE/build') {
                         sh 'ls -a'
                         echo "================================================================================="
-                        def response = sh(script: 'curl http://localhost:8012/', returnStdout: true)
+                        def response = sh(script: 'curl http://localhost:8019/', returnStdout: true)
                         echo '=========================Response====================' + response
                         sh 'npm run test'
                     }
