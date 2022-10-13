@@ -11,9 +11,8 @@ pipeline {
                     sh 'docker-compose up -d'
                     sh 'docker images'
                     echo "================================================================================="
-                    sh 'php yii'
 //                     sh 'docker-compose run --rm php yii migrate --interactive=0'
-                    sh 'winpty docker exec -it nginx-php_yii2 bash -c "cd /app && php yii mgrate"'
+                    sh 'docker-compose exec -T nginx-php_yii2 bash -c "cd /app && php yii mgrate"'
                 }
             }
         }
