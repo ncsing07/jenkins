@@ -11,7 +11,6 @@ pipeline {
                     sh 'docker-compose up -d'
                     sh 'docker images'
                     echo "================================================================================="
-                    sh 'php yii'
                     sh 'docker-compose run --rm php yii migrate --interactive=0'
                 }
             }
