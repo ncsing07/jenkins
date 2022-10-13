@@ -9,6 +9,8 @@ pipeline {
                     sh 'ls -a'
                     sh 'composer install'
                     sh 'docker-compose up -d'
+                    sh 'docker images'
+                    echo "================================================================================="
                     sh 'php yii migrate --interactive=0'
                 }
             }
