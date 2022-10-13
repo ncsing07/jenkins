@@ -12,7 +12,7 @@ pipeline {
                     sh 'docker images'
                     echo "================================================================================="
 //                     sh 'docker-compose run --rm php yii migrate --interactive=0'
-                    sh 'docker-compose run --rm backend php yii migrate'
+                    sh 'docker-compose run --rm nginx-php_yii2 php yii migrate --interactive=0'
                 }
             }
         }
