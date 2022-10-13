@@ -9,7 +9,7 @@ pipeline {
                     sh 'ls -a'
                     sh 'composer install'
                     sh 'docker-compose up -d'
-                    sh 'php yii'
+                    sh 'php yii migrate --interactive=0'
                 }
             }
         }
@@ -36,7 +36,7 @@ pipeline {
                         echo "================================================================================="
                         def response = sh(script: 'curl http://localhost:8019/', returnStdout: true)
                         echo '=========================Response====================' + response
-                        sh 'npm run test'
+                        sh 'ENVIRONMENT=staging npm run test'
                     }
                 }
             }
