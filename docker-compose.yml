@@ -2,6 +2,7 @@ version: "3.2"
 
 services:
   nginx:
+    container_name: nginx-php_yii2
     build: 
       context: .
       dockerfile: docker/nginx/Dockerfile
