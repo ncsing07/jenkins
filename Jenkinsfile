@@ -13,7 +13,7 @@ pipeline {
                     echo "================================================================================="
                     sh 'php yii'
 //                     sh 'docker-compose run --rm php yii migrate --interactive=0'
-                    sh 'docker exec -it nginx-php_yii2 bash -c "cd /app && php yii mgrate"'
+                    sh 'winpty docker exec -it nginx-php_yii2 bash -c "cd /app && php yii mgrate"'
                 }
             }
         }
