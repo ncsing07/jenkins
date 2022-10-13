@@ -9,7 +9,10 @@ pipeline {
                     sh 'ls -a'
                     sh 'composer install'
                     sh 'docker-compose up -d'
+                    sh 'docker images'
+                    echo "================================================================================="
                     sh 'php yii'
+//                     sh 'php yii migrate --interactive=0'
                 }
             }
         }
@@ -36,8 +39,20 @@ pipeline {
                         echo "================================================================================="
                         def response = sh(script: 'curl http://localhost:8019/', returnStdout: true)
                         echo '=========================Response====================' + response
-                        sh 'npm run test'
+                        sh 'ENVIRONMENT=staging npm run test'
                     }
+                }
+            }
+        }
+    }
+    
+    post {
+        always {
+            script{
+                def doc_containers = sh(returnStdout: true, script: 'docker container ps -aq').replaceAll("\n", " ") 
+                if (doc_containers) {
+                    sh "docker stop ${doc_containers}"
+                    sh 'docker ps'
                 }
             }
         }
