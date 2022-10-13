@@ -27,3 +27,5 @@ services:
       MYSQL_ROOT_PASSWORD: my_secret_pw_shh
       MYSQL_USER: devuser
       MYSQL_PASSWORD: devpass
+    volumes:
+      - .:/app/
