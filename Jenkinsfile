@@ -9,10 +9,12 @@ pipeline {
                     sh 'ls -a'
                     sh 'composer install'
                     sh 'docker-compose up -d'
-                    sh 'docker images'
+                    sh 'docker ps'
                     echo "================================================================================="
-                    sh 'php yii'
-                    sh 'docker-compose run --rm php yii migrate --interactive=0'
+                    sh 'php -v'
+                    echo "================================================================================="
+//                     sh 'docker-compose run --rm php yii migrate --interactive=0'
+                    sh 'docker exec -i php_yii2 php yii migrate --interactive=0'
                 }
             }
         }
@@ -37,8 +39,6 @@ pipeline {
                     dir('$WORKSPACE/build') {
                         sh 'ls -a'
                         echo "================================================================================="
-                        def response = sh(script: 'curl http://localhost:8019/', returnStdout: true)
-                        echo '=========================Response====================' + response
                         sh 'ENVIRONMENT=staging npm run test'
                     }
                 }
