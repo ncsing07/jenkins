@@ -9,7 +9,7 @@ pipeline {
                     sh 'ls -a'
                     sh 'composer install'
                     sh 'docker-compose up -d'
-                    sh 'docker images'
+                    sh 'docker ps'
                     echo "================================================================================="
 //                     sh 'docker-compose run --rm php yii migrate --interactive=0'
                     sh 'docker-compose run --rm nginx-php_yii2 php yii migrate --interactive=0'
