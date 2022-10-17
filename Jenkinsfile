@@ -13,7 +13,6 @@ pipeline {
                     echo "================================================================================="
                     sh 'php -v'
                     echo "================================================================================="
-//                     sh 'docker-compose run --rm php yii migrate --interactive=0'
                     sh 'docker exec -i php_yii2 php yii migrate --interactive=0'
                 }
             }
