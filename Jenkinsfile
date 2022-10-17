@@ -13,7 +13,7 @@ pipeline {
                     echo "================================================================================="
                     sh 'php -v'
                     echo "================================================================================="
-//                     sh 'docker exec -i php_yii2 php yii migrate --interactive=0'
+                    sh 'docker exec -i php_yii2 php yii migrate --interactive=0'
                 }
             }
         }
@@ -50,7 +50,7 @@ pipeline {
             script{
                 def doc_containers = sh(returnStdout: true, script: 'docker container ps -aq').replaceAll("\n", " ") 
                 if (doc_containers) {
-                    sh "docker rm -f ${doc_containers}"
+                    sh "docker stop ${doc_containers}"
                     sh 'docker ps'
                 }
             }
