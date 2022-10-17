@@ -136,13 +136,51 @@ class SiteController extends Controller
         }
     }
 
-    public function actionView()
+    public function actionViewPost($id)
     {
-        $post = Post::find()->all();
+        $post = Post::findOne($id);
+        if (!$post) {
+            Yii::$app->response->statusCode = Status::STATUS_NOT_FOUND;
+            return [
+                'status' => Status::STATUS_NOT_FOUND,
+                'message' => 'Data Not Found'
+            ];
+        }
         return [
             'status' => Status::STATUS_OK,
             'message' => 'Data Found',
             'data' => $post
         ];
+    }
+
+    public function actionCreatePost()
+    {
+        $params = Yii::$app->request->post();
+        if (empty($params['title']) || empty($params['body'])) {
+            Yii::$app->response->statusCode = Status::STATUS_BAD_REQUEST;
+            return [
+                'status' => Status::STATUS_BAD_REQUEST,
+                'message' => "Need title and body.",
+                'data' => ''
+            ];
+        }
+
+        $post = new Post();
+        $post->title = $params['title'];
+        $post->body = $params['body'];
+
+        if ($post->save()) {
+            return [
+                'status' => Status::STATUS_OK,
+                'message' => 'Data Found',
+                'data' => $post
+            ];
+        } else {
+            Yii::$app->response->statusCode = Status::STATUS_INTERNAL_SERVER_ERROR;
+            return [
+                'status' => Status::STATUS_INTERNAL_SERVER_ERROR,
+                'message' => 'Unable create post'
+            ];
+        }
     }
 }
