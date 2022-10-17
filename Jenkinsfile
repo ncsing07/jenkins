@@ -10,6 +10,7 @@ pipeline {
                     sh 'composer install'
                     sh 'docker-compose up -d'
                     sh 'docker ps'
+                    echo "================================================================================="
                     sh 'php -v'
                     echo "================================================================================="
 //                     sh 'docker-compose run --rm php yii migrate --interactive=0'
