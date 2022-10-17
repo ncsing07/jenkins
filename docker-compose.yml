@@ -2,7 +2,7 @@ version: "3.2"
 
 services:
   nginx:
-    container_name: nginx-php_yii2
+    container_name: nginx_yii2
     build: 
       context: .
       dockerfile: docker/nginx/Dockerfile
@@ -13,13 +13,19 @@ services:
     depends_on:
       - php
       - mysql
+    networks:
+      - my-network
   
   php:
+    container_name: php_yii2
     image: "yiisoftware/yii2-php:7.4-fpm"
     volumes:
       - .:/app/
+    networks:
+      - my-network
 
   mysql:
+    container_name: mysql_yii2
     image: mysql:5.7.22
     ports:
       - "3306:3306"
@@ -30,3 +36,8 @@ services:
       MYSQL_PASSWORD: devpass
     volumes:
       - .:/app/
+    networks:
+      - my-network
+networks:
+  my-network:
+    driver: bridge
