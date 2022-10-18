@@ -47,13 +47,16 @@ pipeline {
     
     post {
         always {
-            script{
-                def doc_containers = sh(returnStdout: true, script: 'docker container ps -aq').replaceAll("\n", " ") 
-                if (doc_containers) {
-                    sh "docker kill ${doc_containers}"
-                    sh 'docker ps'
-                }
-            }
+//             script{
+//                 def doc_containers = sh(returnStdout: true, script: 'docker container ps -aq').replaceAll("\n", " ") 
+//                 if (doc_containers) {
+//                     sh "docker kill ${doc_containers}"
+//                     sh 'docker ps'
+//                 }
+//             }
+            sh 'docker-compose down'
+            sh 'docker rm -f $(docker ps -a -q)'
+            sh 'docker volume rm $(docker volume ls -q)'
         }
     }
 }
