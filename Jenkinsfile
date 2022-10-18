@@ -8,6 +8,7 @@ pipeline {
                     checkout scm
                     sh 'ls -a'
                     sh 'composer install'
+                    sh 'docker-compose build'
                     sh 'docker-compose up -d'
                     sh 'docker ps'
                     echo "=================================================================================="
