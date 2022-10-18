@@ -14,7 +14,7 @@ pipeline {
                     echo "=================================================================================="
                     sh 'php -v'
                     echo "=================================================================================="
-                    sh 'docker exec -i php_yii2 php yii migrate --interactive=0'
+//                     sh 'docker exec -i php_yii2 php yii migrate --interactive=0'
                 }
             }
         }
@@ -38,6 +38,7 @@ pipeline {
                 script {
                     dir('$WORKSPACE/build') {
                         sh 'ls -a'
+                        sh 'docker exec -i php_yii2 php yii migrate --interactive=0'
                         echo "================================================================================="
                         sh 'ENVIRONMENT=staging npm run test'
                     }
