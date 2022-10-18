@@ -21,6 +21,8 @@ services:
     image: "yiisoftware/yii2-php:7.4-fpm"
     volumes:
       - .:/app/
+    depends_on:
+      - mysql
     networks:
       - my-network
 
