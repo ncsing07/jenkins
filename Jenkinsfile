@@ -58,6 +58,7 @@ pipeline {
 //             sh 'docker rm -f $(docker ps -a -q)'
 //             sh 'docker volume rm $(docker volume ls -q)'
             sh 'docker ps -aq | xargs docker stop | xargs docker rm'
+            sh 'docker ps'
         }
     }
 }
