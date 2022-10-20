@@ -13,7 +13,7 @@ pipeline {
                     sh 'docker ps'
                     echo "==================================================================================="
                     sh 'php -v'
-                    echo "==================================================================================="
+                    echo "========1234567============================================================================"
 //                     sh 'docker exec -i php_yii2 php yii migrate --interactive=0'
                 }
             }
@@ -23,10 +23,16 @@ pipeline {
             steps {
                 // Clones the repository from the current branch name
                 echo 'Cloning files from (branch: master)'
-                dir('$WORKSPACE/build') {
-                    git branch: 'master', credentialsId: 'token2-2', url: 'https://github.com/ncsing07/hello_hapi'
-                    sh 'docker build -t pactumjs -f $WORKSPACE/build/Dockerfile .'
+                dir('build') {
+                    git branch: 'master', credentialsId: 'secret_token', url: 'https://github.com/ncsing07/hello_hapi'
+                    
+                    sh 'ls -a'
+                    echo "=================================================================================="
+                    
+                    sh 'docker build -t pactumjs -f Dockerfile .'
                     sh 'docker images'
+                    
+                    echo "=================================================================================="
                     sh 'npm install --save-dev mocha'
                     sh 'npm i'
                 }
@@ -36,11 +42,11 @@ pipeline {
         stage('Run Test') {
             steps {
                 script {
-                    dir('$WORKSPACE/build') {
+                    dir('build') {
                         sh 'ls -a'
-                        echo "================================================================================="
+                        echo "==================================================================================="
                         sh 'docker exec -i php_yii2 php yii migrate --interactive=0'
-                        echo "================================================================================="
+                        echo "=================================================================================="
                         sh 'ENVIRONMENT=staging npm run test'
                     }
                 }
