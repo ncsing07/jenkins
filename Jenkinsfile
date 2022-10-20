@@ -31,6 +31,8 @@ pipeline {
                     
                     sh 'docker build -t pactumjs -f Dockerfile .'
                     sh 'docker images'
+                    
+                    echo "=================================================================================="
                     sh 'npm install --save-dev mocha'
                     sh 'npm i'
                 }
