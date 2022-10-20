@@ -42,7 +42,7 @@ pipeline {
         stage('Run Test') {
             steps {
                 script {
-                    dir('$WORKSPACE/build') {
+                    dir('$build') {
                         sh 'ls -a'
                         echo "=================================================================================="
                         sh 'docker exec -i php_yii2 php yii migrate --interactive=0'
