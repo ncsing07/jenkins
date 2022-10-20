@@ -29,7 +29,7 @@ pipeline {
                     sh 'ls -a'
                     echo "=================================================================================="
                     
-                    sh 'docker build -t pactumjs -f build/Dockerfile .'
+                    sh 'docker build -t pactumjs -f Dockerfile .'
                     sh 'docker images'
                     sh 'npm install --save-dev mocha'
                     sh 'npm i'
