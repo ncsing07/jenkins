@@ -11,9 +11,9 @@ pipeline {
                     sh 'docker-compose build'
                     sh 'docker-compose up -d'
                     sh 'docker ps'
-                    echo "=================================================================================="
+                    echo "==================================================================================="
                     sh 'php -v'
-                    echo "=================================================================================="
+                    echo "==================================================================================="
 //                     sh 'docker exec -i php_yii2 php yii migrate --interactive=0'
                 }
             }
@@ -57,9 +57,6 @@ pipeline {
 //                     sh 'docker ps'
 //                 }
 //             }
-//             sh 'docker-compose down'
-//             sh 'docker rm -f $(docker ps -a -q)'
-//             sh 'docker volume rm $(docker volume ls -q)'
             sh 'docker ps -aq | xargs docker stop | xargs docker rm'
             sh 'docker ps'
         }
