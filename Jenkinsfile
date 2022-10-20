@@ -23,13 +23,13 @@ pipeline {
             steps {
                 // Clones the repository from the current branch name
                 echo 'Cloning files from (branch: master)'
-                dir('$WORKSPACE/build') {
+                dir('build') {
                     git branch: 'master', credentialsId: 'secret_token', url: 'https://github.com/ncsing07/hello_hapi'
                     
                     sh 'ls -a'
                     echo "=================================================================================="
                     
-                    sh 'docker build -t pactumjs -f $WORKSPACE/build/Dockerfile .'
+                    sh 'docker build -t pactumjs -f build/Dockerfile .'
                     sh 'docker images'
                     sh 'npm install --save-dev mocha'
                     sh 'npm i'
